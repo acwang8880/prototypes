@@ -2,30 +2,12 @@
 import sys
 import os
 
-
-def edit(n, m):
-	# a_len = len(a)
-	# b_len = len(b)
-	# lemon = 0
-
-	# a_start = 0
-	# b_start = 0
-
-	if (b_len > a_len):
-		lemon = b_len
-	else:
-		lemon = a_len
-
-	for i in range(m):
-		for j in range(n):
-
-			return 
-
 def main():
 
 	def diff(i, j, a, b):
-		print("len a: {0} | i: {1}\nlen b: {2} | j: {3}\n".format(len(a), i, len(b), j))
+		# print("len a: {0} | i: {1}\nlen b: {2} | j: {3}\n".format(len(a), i, len(b), j))
 		if (i >= len(a) or j >= len(b)):
+			print("exeec")
 			return 1
 		elif (a[i] == b[j]):
 			return 0
@@ -39,25 +21,23 @@ def main():
 	m = len(b)
 	n = len(a)
 
-	matrix = [[0 for j in range(len(a))] for i in range(len(b))]
+	matrix = [[0 for j in range(m)] for i in range(n)]
 	
-	for i in range(m):
+	for i in range(n):
 		matrix[i][0] = i
 
-	for j in range(n):
+	for j in range(m):
 		matrix[0][j] = j
 
-	for i in range(m):
-		for j in range(n):
+	for i in range(n):
+		for j in range(m):
 			matrix[i][j] = min(matrix[i-1][j] + 1,
 								matrix[i][j-1] + 1,
 								matrix[i-1][j-1] + diff(i, j, a, b))
 	print(matrix)
 	for i in range(len(matrix)):
-		for j in range(len(matrix[i])):
-			if j == len(matrix[i]) - 1:
-				print(matrix[i])
-			print()
-	print(matrix[m-1][n-1])
+		print(matrix[i])
+	# print(matrix[n-1][m-1])
+	print(matrix[n - 2][m - 1])
 
 main()
